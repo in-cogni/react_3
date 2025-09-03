@@ -3,25 +3,28 @@ import Post from '../post/Post.js';
 import './Posts.css';
 
 class Posts extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state =
-        {
-            props: props
-        }
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state =
+    //     {
+    //         props: props
+    //     }
+    // }
     render() {
+        if (!this.props.posts || !Array.isArray(this.props.posts)) {
+            return <div>Нет данных для отображения</div>;
+        }
+
         return (
             <div>
                 {
-                    //typeof(this.state.posts)
-                    this.state.props.posts.map(
-                        post=>
+                    this.props.posts.map(
+                        post =>
                         (
-                            <Post key={post.id} title={post.title} content={post.content}/>
+                            <Post key={post.id} title={post.title} content={post.content} />
                         )
                     )
-                    
+
                 }
             </div>
         )
